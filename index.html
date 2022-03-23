@@ -1,301 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Meta -->
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>LGK Productions</title>
-
-    <!--  -->
-    <link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico" />
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-
-    <!-- https://github.com/Grsmto/simplebar/ -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
-    <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
-
-    <style>
-        body {
-            padding: 0px;
-            margin: 0px;
-            font-family: 'Inter', sans-serif !important;
-        }
-
-        body * {
-            box-sizing: border-box !important;
-        }
-
-        header {
-            position: sticky;
-            top: 0px;
-            background: rgba(255, 255, 255, 0.9);
-            z-index: 100000;
-        }
-
-        header[data-scroll="true"] {
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        header>.container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .container {
-            display: block;
-            margin: 0px auto;
-            width: 100%;
-            max-width: 1000px;
-            padding: 0px 10px;
-        }
-
-        content h2 {
-            font-size: 40px;
-            font-weight: 700;
-        }
-
-        content>.container {
-            margin: 10px auto;
-        }
-
-        .gallery {
-            overflow-x: auto;
-        }
-
-        .horizontal {
-            display: flex;
-            flex-direction: row;
-            align-items: stretch;
-            min-width: min-content;
-        }
-    </style>
-    <!-- https://fonts.google.com/icons -->
-    <style>
-        .material-list {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .material-list>li {
-            margin: 10px 0px;
-        }
-
-        .material-list>li:before {
-            content: attr(data-icon);
-            font-family: 'Material Icons';
-            display: inline-block;
-            margin-right: 10px;
-        }
-    </style>
-
-    <style>
-        .game-presentation {
-            display: block;
-            width: 300px;
-            height: 500px;
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 5px;
-            transition: 0.5s;
-            margin: 10pt;
-            box-shadow: 0px 2px 20px rgba(0, 0, 100, 0.9) inset;
-        }
-
-        .game-presentation>img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            transition: inherit;
-            z-index: -1;
-        }
-
-        .game-presentation:hover>img {
-            width: 150%;
-            height: 150%;
-        }
-
-        .game-presentation>.black_overlay {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            transition: inherit;
-        }
-
-        .game-presentation:hover>.black_overlay {
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        .game-presentation>.content {
-            position: absolute;
-            left: 0px;
-            bottom: 0px;
-            color: white;
-            padding: 20pt;
-        }
-
-        .game-presentation>.content>h3 {
-            font-size: 20pt;
-            padding: 0px;
-            margin: 20pt 0px;
-        }
-
-        .game-presentation>.content>p {
-            font-size: 15pt;
-            padding: 0px;
-            margin: 0px;
-        }
-
-        .game-presentation[data-preview]::after {
-            content: "Preview";
-            position: absolute;
-            top: 10pt;
-            right: 10pt;
-            text-transform: uppercase;
-            color: white;
-            font-size: 15pt;
-        }
-    </style>
-
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        content {
-            flex: 1;
-        }
-
-        footer {
-            background: #000;
-            color: #fff;
-            width: 100%;
-            min-height: 100px;
-            padding: 10px 0px;
-        }
-    </style>
-
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Castle Clashers</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=1152 height=648></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">Castle Clashers</div>
+      </div>
+    </div>
     <script>
-        window.addEventListener("scroll", () => {
-            const scrollpos = document.documentElement.scrollTop || document.body.scrollTop;
-            const scrollEle = document.querySelector("header");
-            if (scrollpos > 10) {
-                scrollEle.setAttribute("data-scroll", "true");
-            } else {
-                scrollEle.setAttribute("data-scroll", "false");
-            }
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
+
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/WebGL.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/WebGL.data",
+        frameworkUrl: buildUrl + "/WebGL.framework.js",
+        codeUrl: buildUrl + "/WebGL.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "Castle Clashers",
+        productVersion: "0.5",
+        showBanner: unityShowBanner,
+      };
+
+      // By default Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        container.className = "unity-mobile";
+        // Avoid draining fillrate performance on mobile devices,
+        // and default/override low DPI mode on mobile browsers.
+        config.devicePixelRatio = 1;
+        unityShowBanner('WebGL builds are not supported on mobile devices.');
+      } else {
+        canvas.style.width = "1152px";
+        canvas.style.height = "648px";
+      }
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+          loadingBar.style.display = "none";
+          fullscreenButton.onclick = () => {
+            unityInstance.SetFullscreen(1);
+          };
+        }).catch((message) => {
+          alert(message);
         });
+      };
+      document.body.appendChild(script);
     </script>
-</head>
-
-<body>
-
-    <header data-scroll="false">
-        <div class="container">
-            <!-- <svg width="40" height="32" viewBox="0 0 40 32" xmlns="http://www.w3.org/2000/svg">
-                <g fill="currentColor" fill-rule="evenodd">
-                    <path
-                        d="M28.487 0L15.42 3.405l-1.933 3.318-3.924-.029L0 15.995l9.564 9.3 3.922-.03 1.938 3.317 13.063 3.405 3.5-12.702-1.989-3.29 1.989-3.29L28.487 0zM13.802 7.257l9.995-2.498-5.737 9.665H6.584l7.218-7.167zm0 17.474l-7.218-7.166H18.06l5.737 9.664-9.995-2.498zm12.792.927l-5.74-9.663 5.74-9.667 2.771 9.667-2.771 9.663zM58.123">
-                    </path>
-                </g>
-            </svg> -->
-            <img src="assets/controller.png" height="32" style="margin-right: 10px;" alt="Logo" />
-            <h2>LG Productions</h2>
-        </div>
-    </header>
-
-    <content>
-        <div class="container">
-            <h2>Fakts</h2>
-            <ul class="material-list" style="font-size:15pt;">
-                <li data-icon="business">LGK Productions</li>
-                <li data-icon="location_on">Germany</li>
-                <li data-icon="web_asset">Unity</li>
-                <li data-icon="code">C#</li>
-            </ul>
-        </div>
-        <div class="container">
-            <h2>Games</h2>
-            <div class="gallery">
-                <h3 style="text-align: center;">Noting here yet...</h3>
-            </div>
-            <div class="gallery" style="display: none;" data-simplebar>
-                <div class="horizontal">
-                    <div class="game-presentation" data-preview>
-                        <img
-                            src="https://unity.com/sites/default/files/styles/16_9_l_scale_width/public/2021-06/Unite-Now-2020-Roundup-Blog-Post_Blog-header_V1_1280x720.jpg" />
-                        <div class="black_overlay"></div>
-                        <div class="content">
-                            <h3>Oculus Party Games</h3>
-                            <p>
-                                A collection of virtual reality based games to play in groups
-                            </p>
-                        </div>
-                    </div>
-                    <div class="game-presentation" data-preview>
-                        <img
-                            src="https://unity.com/sites/default/files/styles/16_9_l_scale_width/public/2021-06/Unite-Now-2020-Roundup-Blog-Post_Blog-header_V1_1280x720.jpg" />
-                        <div class="black_overlay"></div>
-                        <div class="content">
-                            <h3>Line Warrior</h3>
-                            <p>
-                                A Little Cross Platform Multiplayer Project
-                            </p>
-                        </div>
-                    </div>
-                    <div class="game-presentation" data-preview>
-                        <img
-                            src="https://unity.com/sites/default/files/styles/16_9_l_scale_width/public/2021-06/Unite-Now-2020-Roundup-Blog-Post_Blog-header_V1_1280x720.jpg" />
-                        <div class="black_overlay"></div>
-                        <div class="content">
-                            <h3>Jump-n-Gun</h3>
-                            <p>
-                                Jump'n'run game
-                            </p>
-                        </div>
-                    </div>
-                    <div class="game-presentation" data-preview>
-                        <img
-                            src="https://unity.com/sites/default/files/styles/16_9_l_scale_width/public/2021-06/Unite-Now-2020-Roundup-Blog-Post_Blog-header_V1_1280x720.jpg" />
-                        <div class="black_overlay"></div>
-                        <div class="content">
-                            <h3>Ubongo-2D</h3>
-                            <p>
-                                Ubongo in 2D
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </content>
-
-    <footer>
-        <div class="container">
-            <img src="assets/unity-mwu-white.png" style="height: 100px;" alt="Made with Unity" />
-        </div>
-    </footer>
-
-</body>
-
+  </body>
 </html>
