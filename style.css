@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Burned&family=Space+Grotesk&display=swap');
+
+* {
+    box-sizing: border-box !important;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+:root {
+    --box-shadow-1: 0 5px 10px 0 rgb(0 0 0 / 10%);
+    --header-height: 60px;
+    --container-margin: 20px;
+    --container-border-radius: 10px;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    font-family: 'Rubik Burned', cursive;
+}
+
+.main_nav {
+    width: calc(100vw - 2 * var(--container-margin));
+    height: var(--header-height);
+    margin: var(--container-margin);
+    border-radius: var(--container-border-radius);
+    background: #F5F5F5;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 10px;
+    overflow-x: auto;
+}
+
+    .main_nav > a {
+        color: #222;
+        text-decoration: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: var(--container-border-radius);
+    }
+
+        .main_nav > a:hover {
+            background: #eee;
+            box-shadow: var(--box-shadow-1);
+        }
+
+        .main_nav > a:active {
+            background: #ddd;
+        }
+
+.fullpage_header {
+    width: calc(100vw - 2 * var(--container-margin));
+    height: calc(100vh - 3 * var(--container-margin) - var(--header-height));
+    min-height: 250px;
+    margin: var(--container-margin);
+    border-radius: var(--container-border-radius);
+    background: linear-gradient(#8EB0F8, #6B79DF);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+    .fullpage_header h1 {
+        font-size: 30pt;
+    }
+
+.logo {
+    --logo-size: 60px;
+    border-radius: 50%;
+    background: url("assets/logo.png") no-repeat;
+    background-size: cover;
+    min-width: var(--logo-size);
+    min-height: var(--logo-size);
+}
+
+.box_shadow {
+    box-shadow: var(--box-shadow-1);
+}
+
+.game_link {
+    border-radius: var(--container-border-radius);
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 570px;
+}
+
+    .game_link > iframe {
+        width: 100%;
+    }
+
+.games_container {
+    padding: var(--container-margin);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
