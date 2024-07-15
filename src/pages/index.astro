@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<html
+  lang="en"
+  class="bg-zinc-100 dark:bg-zinc-900 text-zinc-950 dark:text-zinc-50"
+>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>LGK Productions</title>
+    <base target="_blank" />
+  </head>
+  <body class="prose dark:prose-invert mx-auto">
+    <header class="flex flex-row items-center gap-3">
+      <img
+        src="https://www.gravatar.com/avatar/0f0faaf1a2234983e68a4de9d21bd262?d=404"
+        class="m-2 p-2 rounded-full w-24 h-24 bg-zinc-200 dark:bg-zinc-800 border border-zinc-500"
+        alt="LGK Productions logo"
+      />
+      <h1 class="m-0">LGK Productions</h1>
+    </header>
+
+    <p>Hi there!</p>
+
+    <h2>Links</h2>
+    <a
+      href="https://github.com/LGK-Productions"
+      class="flex flex-row items-center gap-2"
+    >
+      <Icon name="tabler:brand-github" size={30} />
+      GitHub
+    </a>
+    <a
+      href="https://lgk-productions.itch.io/"
+      class="flex flex-row items-center gap-2"
+    >
+      <Icon name="tabler:brand-itch" size={30} />
+      Itch
+    </a>
+
+    <h2>Games</h2>
+    <section class="flex flex-col gap-3">
+      <iframe
+        src="https://itch.io/embed/2158248?link_color=DD3721&dark=true"
+        class="w-full"
+        allowtransparency="true"></iframe>
+      <iframe
+        src="https://itch.io/embed/1663329?link_color=DD3721&dark=true"
+        class="w-full"
+        allowtransparency="true"></iframe>
+    </section>
+  </body>
+</html>
