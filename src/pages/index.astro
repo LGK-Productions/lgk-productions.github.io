@@ -1,76 +1,46 @@
 ---
 import { Icon } from "astro-icon/components";
+import Layout from "../layouts/Layout.astro";
 
 const gameIds = [5094689, 4511947, 3962062, 3028096, 2158248, 1663329];
 ---
 
-<html
-  lang="en"
-  class="bg-zinc-100 dark:bg-zinc-900 text-zinc-950 dark:text-zinc-50"
->
-  <head>
-    <meta charset="utf-8" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="https://www.gravatar.com/avatar/0f0faaf1a2234983e68a4de9d21bd262"
-    />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>LGK Productions</title>
-    <base target="_blank" />
+<Layout title="LGK Productions">
+  <p>Hi there 👋</p>
 
-    <script
-      defer
-      data-domain="lgk-productions.com"
-      src="https://plausible.shortdev.de/js/script.js"></script>
-  </head>
-  <body class="prose dark:prose-invert mx-auto p-3">
-    <header class="flex flex-row items-center gap-3">
-      <img
-        src="https://www.gravatar.com/avatar/0f0faaf1a2234983e68a4de9d21bd262?d=404"
-        class="m-2 p-2 rounded-full w-24 h-24 bg-zinc-200 dark:bg-zinc-800 border border-zinc-500"
-        alt="LGK Productions logo"
-      />
-      <h1 class="m-0">LGK Productions</h1>
-    </header>
+  <h2>Links</h2>
+  <a
+    href="https://github.com/LGK-Productions"
+    class="flex flex-row items-center gap-2"
+  >
+    <Icon name="tabler:brand-github" size={30} />
+    GitHub
+  </a>
+  <a
+    href="https://lgk-productions.itch.io/"
+    class="flex flex-row items-center gap-2"
+  >
+    <Icon name="tabler:brand-itch" size={30} />
+    Itch
+  </a>
+  <a
+    href="https://fdroid.link/#https://fdroid.lgk-productions.com/fdroid/repo?fingerprint=B5143295F441FBAF2701C286A1C4D31F7BDF41607397ED9B2F6AA81B09B4C00A"
+    class="flex flex-row items-center gap-2"
+  >
+    <Icon name="tabler:brand-android" size={30} />
+    F-Droid
+  </a>
 
-    <p>Hi there 👋</p>
-
-    <h2>Links</h2>
-    <a
-      href="https://github.com/LGK-Productions"
-      class="flex flex-row items-center gap-2"
-    >
-      <Icon name="tabler:brand-github" size={30} />
-      GitHub
-    </a>
-    <a
-      href="https://lgk-productions.itch.io/"
-      class="flex flex-row items-center gap-2"
-    >
-      <Icon name="tabler:brand-itch" size={30} />
-      Itch
-    </a>
-    <a
-      href="https://fdroid.link/#https://fdroid.lgk-productions.com/fdroid/repo?fingerprint=B5143295F441FBAF2701C286A1C4D31F7BDF41607397ED9B2F6AA81B09B4C00A"
-      class="flex flex-row items-center gap-2"
-    >
-      <Icon name="tabler:brand-android" size={30} />
-      F-Droid
-    </a>
-
-    <h2>Games</h2>
-    <section class="flex flex-col gap-3">
-      {
-        gameIds.map((id) => (
-          <iframe
-            src={`https://itch.io/embed/${id}?bg_color=18181b&fg_color=fff&link_color=542f03&border_color=18181b`}
-            class="w-full"
-            allowtransparency="true"
-          />
-        ))
-      }
-    </section>
-  </body>
-</html>
+  <h2>Games</h2>
+  <section class="flex flex-col gap-3">
+    {
+      gameIds.map((id) => (
+        <iframe
+          src={`https://itch.io/embed/${id}?bg_color=18181b&fg_color=fff&link_color=542f03&border_color=18181b`}
+          class="w-full"
+          allowtransparency="true"
+        />
+      ))
+    }
+  </section>
+</Layout>
